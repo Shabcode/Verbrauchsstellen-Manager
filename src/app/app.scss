@@ -1,0 +1,9 @@
+.example-spacer {
+    flex: 1 1 auto; 
+  }
+  
+  app-vb-manager {
+      display: block;
+      height: calc(100vh - 64px); /* Annahme: 64px ist die Höhe der mat-toolbar */
+      width: 100%;
+  }

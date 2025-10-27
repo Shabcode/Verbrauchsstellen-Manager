@@ -1,0 +1,19 @@
+<div class="vb-manager-layout">
+    <app-vb-list
+    [verbrauchsstellen]="alleVerbrauchsstellen()"  [selectedVbId]="selectedVbId()"(vbSelected)="onVerbrauchsstelleAusgewaehlt($event)"
+    (createNew)="onNeueVerbrauchsstelle()">
+    </app-vb-list>
+  
+    <div class="content-area">
+      @if (aktuelleVB(); as vb) {  <app-vb-detail 
+          [vb]="vb"
+          (save)="onSaveVerbrauchsstelle($event)"
+          (delete)="onDeleteVerbrauchsstelle($event)">
+        </app-vb-detail>
+      } @else {
+        <div class="no-selection-message">
+          <p>Bitte wählen Sie links eine Verbrauchsstelle aus oder legen Sie eine Neue an.</p>
+        </div>
+      }
+    </div>
+  </div>

@@ -1,0 +1,109 @@
+@if (vbForm) {
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Verbrauchsstelle {{ vb?.adresse }} {{ vb?.hausNummer }}</mat-card-title>
+      <div class="actions">
+        <button mat-flat-button color="primary" [disabled]="vbForm.invalid" (click)="onSave()">
+          <mat-icon>edit</mat-icon> Bearbeiten
+        </button>
+        <button mat-flat-button color="warn" class="delete-button" (click)="onDelete()" [disabled]="!vb">
+          <mat-icon>delete</mat-icon> Löschen
+        </button>
+      </div>
+    </mat-card-header>
+    
+    <mat-divider></mat-divider>
+  
+    <mat-card-content [formGroup]="vbForm" class="vb-form-grid">
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="adresse">
+        <mat-icon matPrefix>home</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="small-input">
+        <mat-label>Haus-Nr.</mat-label>
+        <input matInput formControlName="hausNummer">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="small-input">
+        <mat-label>PLZ</mat-label>
+        <input matInput formControlName="plz">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="medium-input">
+        <mat-label>Ort</mat-label>
+        <input matInput formControlName="ort">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="full-row">
+        <mat-label>Kontaktperson</mat-label>
+        <input matInput formControlName="kontaktPerson">
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="medium-input">
+        <mat-label>Meine VB-Art</mat-label>
+        <input matInput formControlName="VBArt">
+        <mat-icon matPrefix>toc</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="medium-input">
+        <mat-label>Kennung</mat-label>
+        <input matInput formControlName="kennung">
+        <mat-icon matPrefix>vpn_key</mat-icon>
+      </mat-form-field>
+  
+    </mat-card-content>
+    
+    <mat-card-actions class="zaehlpunkte-header">
+      <h3>Zählpunkte ({{ zaehlpunkteData.length }})</h3>
+      <button mat-flat-button color="primary" (click)="onNewZaehlpunkt()">
+        <mat-icon>add_circle_outline</mat-icon> Neu
+      </button>
+    </mat-card-actions>
+    
+    <div class="mat-elevation-z1">
+      <table mat-table [dataSource]="zaehlpunkteData">
+  
+        <ng-container matColumnDef="bezeichnung">
+          <th mat-header-cell *matHeaderCellDef> Bezeichnung </th>
+          <td mat-cell *matCellDef="let element"> {{element.bezeichnung}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="sparte">
+          <th mat-header-cell *matHeaderCellDef> Sparte </th>
+          <td mat-cell *matCellDef="let element"> {{element.sparte}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="gueltigVonBis">
+          <th mat-header-cell *matHeaderCellDef> Gültig von/bis </th>
+          <td mat-cell *matCellDef="let element"> {{element.gueltigVonBis}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="anlageZuordnung">
+          <th mat-header-cell *matHeaderCellDef> Anlagenzuordnung von/bis </th>
+          <td mat-cell *matCellDef="let element"> {{element.anlageZuordnung}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action-buttons">
+            <button mat-icon-button color="primary" title="Bearbeiten">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" title="Löschen">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card>
+} @else {
+  <p>Lade Details...</p>
+}

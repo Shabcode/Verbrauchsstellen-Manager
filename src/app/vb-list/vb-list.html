@@ -1,0 +1,19 @@
+<div class="vb-list-header">
+    <h2>Verbrauchsstellen</h2>
+    <button mat-icon-button color="primary" 
+            (click)="onCreateClick()" 
+            matTooltip="Neue Verbrauchsstellen anlegen">
+      <mat-icon>add_circle_outline</mat-icon> </button>
+  </div>
+  
+  <mat-nav-list>
+    @for (vb of verbrauchsstellen; track vb.VBId) {
+      <mat-list-item
+      (click)="onVbClick(vb)"
+      [activated]="vb.VBId === selectedVbId"> 
+      <span>{{ vb.adresse }} {{ vb.hausNummer }}</span>
+      <span class="zaehlpunkt-count">({{ vb.zaehlpunkte.length }})</span>
+      
+    </mat-list-item>
+  }
+  </mat-nav-list>

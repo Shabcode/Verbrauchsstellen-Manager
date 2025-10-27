@@ -1,0 +1,18 @@
+.vb-manager-layout {
+    display: flex;
+    height: calc(100vh - 64px); 
+    width: 100%;
+  }
+  
+  .content-area {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 16px;
+  }
+  
+  .no-selection-message {
+    padding: 50px;
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+  }
